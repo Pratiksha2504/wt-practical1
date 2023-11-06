@@ -1,0 +1,788 @@
+
+
+//form validation
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="formv.css" type="text/css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="register">
+        <h2>Register Here</h2>
+        <form id="register" method="get" onsubmit="return validateform()">
+          <label>First Name : </label>
+          <br />
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            placeholder="Enter Your First Name"
+            required
+          />
+          <span id="fnameError" style="color: red"></span>
+          <!-- Error message container -->
+          <br /><br />
+          <label>Last Name : </label>
+          <br />
+          <input
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="Enter Your Last Name"
+            required
+          />
+          <span id="lnameError" style="color: red"></span>
+          <br /><br />
+          <label>Your Phone No. : </label>
+          <br />
+          <input
+            type="number"
+            name="phone"
+            id="phone"
+            placeholder="Enter Your Phone No."
+          />
+          <span id="phoneError" style="color: red"></span>
+          <br /><br />
+          <label>Email : </label>
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Your Valid Email"
+            required
+          />
+          <br /><br />
+          <label>Password : </label>
+          <br />
+          <input
+            type="password"
+            name="pass"
+            id="pass"
+            placeholder="Enter Your Password"
+            required
+          />
+          <br /><br />
+          <label>Confirm Password : </label>
+                    <br>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Your Password" required>
+                    <span id="confirmPasswordError" style="color: red;"></span>
+                    <br><br>
+          &nbsp;&nbsp;&nbsp;
+          <label>Gender : </label>
+          <br />
+          &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="gender" id="male" />
+          &nbsp;
+          <span id="male">Male</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="gender" id="female" />
+          &nbsp;
+          <span id="female">Female</span>
+          <input type="radio" name="gender" id="other" />
+          &nbsp;
+          <span id="other">Other</span>
+          <br /><br />
+          <input type="submit" id="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+    <script>
+      function validateform() {
+        var returnval = true;
+        var fname = document.getElementById("fname");
+        var fnameError = document.getElementById("fnameError");
+
+        var lname = document.getElementById("lname");
+        var lnameError = document.getElementById("lnameError");
+
+        var phone = document.getElementById("phone");
+        var phoneError = document.getElementById("phoneError");
+
+        var pass = document.getElementById("pass");
+        var passError = document.getElementById("passError");
+
+        var confirmPassword = document.getElementById('confirmPassword');
+        var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+
+        if (fname.value.length < 3) {
+          fnameError.textContent ="*First Name should be at least 3 characters long.";
+          returnval = false;
+        } else {
+          fnameError.textContent = ""; // Clear the error message if the input is valid
+        }
+        if (!/^[A-Za-z\s]+$/.test(fname.value)) 
+        {
+            alert("*First Name should contain only letters and spaces.");
+            returnval = false;
+        }
+        if (lname.value.length < 3) {
+          lnameError.textContent ="*Last Name should be at least 3 characters long.";
+          returnval = false;
+        } else {
+          lnameError.textContent = "";
+        }
+        if (!/^[A-Za-z\s]+$/.test(lname.value)) 
+        {
+            alert("*Last Name should contain only letters and spaces.");
+            returnval = false;
+        }
+        if (phone.value.length != 10) {
+          phoneError.textContent = "*Phone number should be 10 digits";
+          returnval = false;
+        } else {
+          phoneError.textContent = "";
+        }
+        if (pass.value.length < 8) {
+          alert("*Password should be at least 8 characters long.");
+          returnval = false;
+        }
+        if (!/[A-Z]/.test(pass.value)) 
+        {
+            alert("*Password should contain at least one uppercase letter.");
+            returnval = false;
+        }
+        if (!/[a-z]/.test(pass.value)) {
+            alert("*Password should contain at least one lowercase letter.");
+            returnval = false;
+        }
+            
+        if (!/[0-9]/.test(pass.value)) 
+        {
+            alert("*Password should contain at least one number.");
+            returnval = false;
+        }
+        if (!/[@$!%*?&]/.test(pass.value)) 
+        {
+            alert("*Password should contain at least one special character.");
+            returnval = false;
+        }
+        if (confirmPassword.value !== pass.value) 
+        {
+            confirmPasswordError.textContent = "*Passwords do not match.";
+            returnval = false;
+        } 
+        else 
+        {
+            confirmPasswordError.textContent = "";
+        }
+        
+        return returnval;
+      }
+    </script>
+  </body>
+</html>
+
+
+// css validation
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: url('natur4.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+div.main{
+    width: 400px;
+    margin: 100px auto 50px auto;
+    
+}
+h2{
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+}
+div.register{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    color: #fff;
+    background-attachment: fixed;
+}
+form#register{
+    margin: 40px;
+}
+label{
+    font-family: sans-serif;
+    font-size: 18px;
+    font-style: italic;
+}
+input#fname,#lname,#phone,#email,#pass,#confirmPassword{
+    width: 300px;
+    font-family: sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: 0;
+    padding: 8px;
+    background-color: #fff;
+    box-shadow: inset 1px 1px 5px rgba (0,0,0,0.3);
+}
+
+input#submit{
+    width: 200px;
+    padding: 7px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: rgba(255,100,0,0.8);
+    color: #fff;
+    cursor: pointer;
+    border:1px solid
+    rgba(255,255,255,0.3);
+    box-shadow:1px 1px 5px
+    rgba(0,0,0,0.3);
+}
+label,h2,span{
+    text-shadow: 1px 1px 5 px
+    rgba(0,0,0,0.3);
+}
+\\\\\\\\\\\\\\\\\\\\\\\\\
+
+//to do list w3//
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<h2>My Todo List</h2>
+
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="todoInput" size="50" placeholder="Add New">
+    <input type="submit" value="Add New">
+</form>
+
+<br>
+
+<div ng-repeat="x in todoList">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+</div>
+
+<p><button ng-click="remove()">Remove marked</button></p>
+
+<script>
+var app = angular.module('myApp', []); 
+app.controller('todoCtrl', function($scope) {
+    $scope.todoList = [{todoText:'Clean House', done:false}];
+
+    $scope.todoAdd = function() {
+        $scope.todoList.push({todoText:$scope.todoInput, done:false});
+        $scope.todoInput = "";
+    };
+
+    $scope.remove = function() {
+        var oldList = $scope.todoList;
+        $scope.todoList = [];
+        angular.forEach(oldList, function(x) {
+            if (!x.done) $scope.todoList.push(x);
+        });
+    };
+});
+</script>
+
+</body>
+</html>
+//////////////////////////
+
+//todo list //
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            min-width: 250px;
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* Style the list items */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        ul li:nth-child(odd) {
+            background: rgb(142, 232, 223);
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #ddd;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* Add a "checked" mark when clicked on */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        /* Style the close button */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: #1d2029;
+            padding: 30px 40px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Clear floats after the header */
+        .header:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the input */
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 10px;
+            width: 75%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+
+        /* Style the "Add" button */
+        .addBtn {
+            padding: 10px;
+            width: 20%;
+            background:rgb(252, 127, 3);
+            color: black;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s; 
+            border-radius: 10px;
+            margin-left: 10px;
+            font-family: sans-serif;
+        }
+
+        .addBtn:hover {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myDIV" class="header">
+        <h2 style="margin:5px">My To Do List</h2>
+        <input type="text" id="myInput" placeholder="What to do...">
+        <span onclick="newElement()" class="addBtn">Add Task</span>
+    </div>
+
+    <ul id="myUL">
+        <li>Hit the gym</li>
+        <li class="checked">Pay bills</li>
+        <li>Meet George</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+    </ul>
+
+    <script>
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+
+        // Add a "checked" symbol when clicking on a list item
+        var list = document.querySelector('ul');
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
+
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+            document.getElementById("myInput").value = "";
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
+/////////////////////////////////////////////////////////////
+
+//login page//
+
+<!Doctype html>
+<html>
+    <head>
+        <title>
+            login page
+        </title>
+        <link rel="stylesheet" href="loginpage.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuU4lh7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Welcome To Login Page!</h1>
+        <div class="main">
+            <h1> Registration Form</h1>
+            <div class="container">
+
+                <form>
+                    <div class="info">
+                    <label class="form-label" for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name here" required><br><br>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" placeholder="Enter your Email here"required><br><br>
+                    <label for="pass">Password:</label>
+                    <input type="text" id="pass" placeholder="Enter your password here"required><br><br>
+                    <label for="pn">Contact no:</label>
+                    <input type="text" id="pn" placeholder="Enter your phone no here"required><br><br>
+                    <label for="date">Date</label>
+                    <input type="date" id="mydate"><br>
+                   
+                    </div><br>
+                    <label for="sub">Subject</label>
+                    <select for="subject">
+                        <option value="a">DAA</option>
+                        <option value="a">CC</option>
+                        <option value="a">EM</option>
+                        <option value="a">OSA</option>
+                    </select><br><br>
+                    Gender:male<input type="radio" id="gender" name="gender">
+                    female<input type="radio" id="gender" name="gender">
+                    other<input type="radio" id="gender"name="gender"><br><br>
+                    write about yourself:<br><textarea name="text" rows="10" cols="40"></textarea>
+                    <br><br><button type="submit" class="btn btn-outline-primary">Submit Form</button>
+                    </div>
+                </form>
+                <div>
+            </div>
+        </div>
+        <script src="login.js">
+            
+        </script>
+        
+    </body>
+</html>
+
+
+ //css login//
+*{
+   margin:0;
+   padding:0;
+}
+body{
+    text-align:center;
+    background-color:black;
+    font-size: large;
+}
+h1{
+    color:white;
+
+}
+.main h1{
+    color:black;
+}
+.main{
+    width:700px;
+    height:900px;
+    background-color:aliceblue;
+    color:black;
+    margin:5rem 25rem;
+    border:2px solid brown;
+    border-radius:20px;
+}
+.main:hover{
+    transform: scale(1.10);
+    cursor: pointer;
+
+}
+.container{
+    margin: 20px;
+    padding:20px;
+}
+.info input{
+    width:100%;
+    padding:10px;
+    border:2px solid rgb(78, 31, 31);
+}
+.info input:hover{
+    border:2px solid red;
+}
+button{
+    padding: 10px;
+    margin:10px;
+    border: 2px solid black;
+    border-radius:10px;
+    color:white;
+    background-color:blue;
+}
+button:hover{
+    border-radius: 2px solid red;
+    background-color:rgb(60, 60, 215);
+
+}
+button:active{
+    background-color:burlywood;
+
+}
+
+
+//////////////////////////////////////////////////////
+
+//regestration static 1//
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Personal Details</title>
+        <link rel="stylesheet"  href="mystyle.css">
+    </head>
+    <style>
+        input[type=text],select{
+            width:100%;
+            padding:12px 20px;
+            margin:8px 0;
+            display:inline-block;
+            border:1px solid #ccc;
+            border-radius:4px;
+            box-sizing:border-box;
+        }
+        input[type="submit"] {
+            width:100%;
+            background-color:#4CAF50;
+            color:white;
+            padding:14px 20px;
+            margin:8px 0;
+            border:none;
+            border-radius:4px;
+        }
+        input[type=submit]:hover{
+            background-color:#45a049;
+        }
+        input[type="email"] {
+            width:100%;
+            color:white;
+            padding:14px 20px;
+            margin:8px 0;
+            border:none;
+            border-radius:4px;
+        }
+        input[type="radio"] {
+            width:5%;
+            color:white;
+            padding:4px 2px;
+            margin:8px 0;
+            border:none;
+            border-radius:4px;
+        }
+        
+        
+        div{
+            border-radius:5px;
+            background-color:#f2f2f2;
+            padding:20px;
+        }
+        h1{
+        color:red;
+        margin-left:20px;
+    }
+    </style>
+    
+<body style="background-color:skyblue;">
+    <br>
+    <marquee>PERSONAL DETAILS FORM</marquee>
+    <h1>Sanjivani College Of Engineering</h1>
+    <fieldset><legend>Personal Details</legend>
+    <form>
+    First name:<br>
+    <input type="text" name="firstname" placeholder="Your Last Name"><br>
+    Middle Name:<br>
+    <input type="text" name="middlename"placeholder="Your Middle Name"><br>
+    Last Name:<br>
+    <input type="text" name="lastname"placeholder="Your Last Name"><br>
+    Gender:<br>
+    <input type="radio" name="gender" value="male">Male<br>
+    <input type="radio" name="gender" value="female">Female<br>
+    <input type="radio" name="gender" value="other">Other<br>
+    Email Id:<br>
+    <input type="email" name="email id" placeholder="Your e-mail id"><br>
+    Upload Photo:
+    <input type="file" name="upload"><br>
+    Date Of Birth:<br>
+    <input type="date" name="Dateofbirth"><br>
+    State:<br>
+    <select>
+        <option value ="state">State </option> <br>
+        <option value="Andhra Pradesh">Andhra Pradesh</option><br>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option><br>
+        <option value="Assam">Assam</option><br>
+        <option value="Bihar">Bihar</option><br>
+        <option value="Chattisgarh">Chattisgarh</option><br>
+        <option value="Goa">Goa</option><br>
+        <option value="Gujarat">Gujarat</option><br>
+        <option value="Haryana">Haryana</option><br>
+        <option value="Himachal Pradesh">Himachal Pradesh</option><br>
+        <option value="Jharkhand">Jharkhand</option><br>
+        <option value="Karnataka">Karnataka</option><br>
+        <option value="Kerala">Kerala</option><br>
+        <option value="Madhya Pradesh">Madhya Pradesh</option><br>
+        <option value="Maharashtra">Maharashtra</option><br>
+        <option value="Manipur">Manipur</option><br>
+        <option value="Meghalaya">Meghalaya</option><br>
+        <option value="Mizoram">Mizoram</option><br>
+        <option value="Nagaland">Nagaland</option><br>
+        <option value="Odisha">Odisha</option><br>
+        <option value="Punjab">Punjab</option><br>
+        <option value="Rajasthan">Rajasthan</option><br>
+        <option value="Sikkim">Sikkim</option><br>
+        <option value="Tamil Nadu">Tamil Nadu</option><br>
+        <option value="Telangana">Telangana</option><br>
+        <option value="Tripura">Tripura</option><br>
+        <option value="Uttar Pradesh">Uttar Pradesh</option><br>
+        <option value="Uttarakhand">Uttarakhand</option><br>
+        <option value="West Bengal">West Bengal</option><br>
+    </select><br>
+    Village/City:<br>
+    <input type="text" name="village"><br>    
+</form>
+</fieldset>
+<fieldset><legend>Academic Information</legend>
+<form >
+    College Name:<br>
+    <select>
+        <option value="college name">Institution Name</option>
+        <option value="scoe">Sanjivani College Of Engineering</option><br> 
+        <option value="skbp">Sanjivani K.B.Polytechnique</option><br>
+        <option value="pharmacy">Sanjivani College Of Pharmaceutical Research</option><br>
+        <option value="junior college">Sanjivani Junior College</option><br>
+
+    </select><br>
+    Qualification:<br>
+    <select>
+    <option value ="course name">Course Name </option> <br>
+        <option value="BTECH/BE">BTECH/BE</option><br>
+        <option value="MTECH/ME">MTECH/ME</option><br>
+        <option value="MBBS">MBBS</option><br>
+        <option value="BAMS">BAMS</option><br>
+        <option value="BHMS">BHMS</option><br>
+        <option value="MBA">MBA</option><br>
+        <option value="BBA">BBA</option><br>
+        <option value="BSC">BSC</option><br>
+        <option value="BA">BA</option><br>
+        <option value="MA">MA</option><br>
+        <option value="BCS">BCS</option><br>
+        <option value="B Pharmacy">B Pharmacy</option><br>
+        <option value="D Pharmacy">D Pharmacy</option><br>
+        <option value="Diploma Engineering">Diploma Engineering</option><br>
+    </select><br>
+</form>
+</fieldset>
+<form ><input type="submit" value="Submit">
+<input type="reset">
+</form>
+</body>
+</html>
+////////////////////////////////////////////////////////////////
+
+
